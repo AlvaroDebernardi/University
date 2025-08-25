@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 int y; /* global integer y */
 
