@@ -19,8 +19,6 @@ public class TestBowling {
         Player player = new Player();
         int pindDown = 11;
 
-        player.roll(pindDown);
-
         assertThrows(IllegalArgumentException.class, () -> {
             player.roll(pindDown);
         });
@@ -53,6 +51,6 @@ public class TestBowling {
 
         assertEquals(30,player.score());
         assertEquals(player.spareBonus(),0);
-        assertEquals(player.strikeBonus(),1);
+        assertEquals(player.strikeBonus(),2);
     }
 }

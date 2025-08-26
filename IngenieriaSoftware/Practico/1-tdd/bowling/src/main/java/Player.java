@@ -13,23 +13,17 @@ public class Player {
         spareBonus = 0;
         strikeBonus = 0;
         pinsLeft = 10;
-        framePlayed = 0;
         turnOnFrame = 1;
+        framePlayed = 0;
     }
 
     public void roll(int pins) {
         if (pinsLeft - pins < 0)
-            throw new IllegalArgumentException("the number of pins are grater that are left");
-        score += pins;
+            throw new IllegalArgumentException(
+                    pins + "-Pins down " + pinsLeft + "-Left");
 
-        if (spareBonus == 1) {
-            score += 2 * pins;
-            spareBonus = 0;
-        }
-        if (strikeBonus >= 1) {
-            score += 2 * pins;
-            strikeBonus -= 1;
-        }
+        applyPoints(pins);
+
 
         if (turnOnFrame == 1) {
             if (pins == 10) {
@@ -41,12 +35,25 @@ public class Player {
                 turnOnFrame = 2;
             }
         } else {
-            if(pinsLeft == 0) {
+            if(pinsLeft - pins == 0)
                 spareBonus++;
-            }
+
             pinsLeft = 10;
             framePlayed++;
             turnOnFrame = 1;
+        }
+    }
+
+    private void applyPoints(int pinsDown) {
+        score += pinsDown;
+
+        if (spareBonus == 1) {
+            score += pinsDown;
+            spareBonus = 0;
+        }
+        if (strikeBonus >= 1) {
+            score += pinsDown;
+            strikeBonus -= 1;
         }
     }
 
