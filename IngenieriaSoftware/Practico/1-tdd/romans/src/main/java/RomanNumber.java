@@ -1,53 +1,72 @@
-import java.util.LinkedList;
+import java.util.*;
 
 public class RomanNumber {
 
-    public static final LinkedList<Integer> I = 1;
-    public static final LinkedList<Integer> V = 5;
-    public static final LinkedList<Integer> X = 10;
-    public static final LinkedList<Integer> L = 50;
-    public static final LinkedList<Integer> C = 100;
-    public static final LinkedList<Integer> D = 500;
-    public static final LinkedList<Integer> M = 1000;
+    private int value;
+    private String representation;
 
-    LinkedList<Integer> number;
+    private static List<RomanDigit> digits = initBasicRomanDigits();
 
-    public RomanNumber(){
-        number = new LinkedList<>();
-    }
-
-    RomanNumber fromInt(int number) {
-        if (number <= 0 || number > 3000)
+    public RomanNumber(int value){
+        if (value <= 0 || value > 3000)
             throw new IllegalArgumentException("Not negative, or grater than 3000");
-        switch (number) {
-            case 1:
-                roman = RomanNumber.I;
-                break;
-            case 5:
-                roman = RomanNumber.V;
-                break;
-            case 10:
-                roman = RomanNumber.X;
-                break;
-            case 50:
-                roman = RomanNumber.L;
-                break;
-            case 100:
-                roman = RomanNumber.C;
-                break;
-            case 500:
-                roman = RomanNumber.D;
-                break;
-            case 1000:
-                roman = RomanNumber.M;
-                break;
 
-            default:
-                throw new IllegalArgumentException(
-                        "Not implemented for any number");
-        }
+        this.value = value;
+        representation = makeRepr(value);
     }
 
+
+	public static RomanNumber fromInt(int value) {
+        return new RomanNumber(value);
+    }
+
+    @Override
+    public String toString() {
+        return representation;
+    }
+
+    private String makeRepr(int value) {
+
+        for (RomanDigit rd: digits) {
+            if (value == rd.value)
+                return rd.repr;
+
+            if (value > rd.value)
+                return rd.repr + makeRepr(value - rd.value);
+            
+            if (value == rd.value - rd.subtracter.value)
+                return rd.subtracter.repr + rd.repr;
+
+            if (value > rd.value - rd.subtracter.value)
+                return rd.subtracter.repr + rd.repr + makeRepr(value - (rd.value - rd.subtracter.value));
+        }
+        return "Something went wrong";
+	}
+
+
+	private static List<RomanDigit> initBasicRomanDigits() {
+        List<RomanDigit> list = new ArrayList<>();
+        
+        RomanDigit I = new RomanDigit("I", 1, null);
+        RomanDigit V = new RomanDigit("V", 5, I);
+        RomanDigit X = new RomanDigit("X", 10, I);
+        RomanDigit L = new RomanDigit("L", 50, X);
+        RomanDigit C = new RomanDigit("C", 100, X);
+        RomanDigit D = new RomanDigit("D", 500, C);
+        RomanDigit M = new RomanDigit("M", 1000, C);
+
+        list.add(M);
+        list.add(D);
+        list.add(C);
+        list.add(L);
+        list.add(X);
+        list.add(V);
+        list.add(I);
+
+        return list;
+	}
+}
+/*
     @Override
     public boolean equals(Object object) {
         if (this == object)
@@ -60,4 +79,4 @@ public class RomanNumber {
 
         return this.number.equals(object.number);
     }
-}
+*/
