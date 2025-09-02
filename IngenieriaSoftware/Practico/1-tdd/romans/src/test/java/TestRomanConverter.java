@@ -8,7 +8,7 @@ public class TestRomanConverter {
     void graterThan3000Test() {
 
         assertThrows(IllegalArgumentException.class, () -> {
-                RomanNumber.fromInt(3001);
+                RomanNumber.valueOf(3001);
         });
     }
 
@@ -16,80 +16,80 @@ public class TestRomanConverter {
     void equalThan0Test() {
 
         assertThrows(IllegalArgumentException.class, () -> {
-                RomanNumber.fromInt(0);
+                RomanNumber.valueOf(0);
         });
     }
 
     @Test
     void lesserThan0Test() {
         assertThrows(IllegalArgumentException.class, () -> {
-                RomanNumber.fromInt(-3);
+                RomanNumber.valueOf(-3);
         });
     }
 
     @Test
     void basicRomanNumbers() {
-        assertEquals("I", RomanNumber.fromInt(1).toString());
-        assertEquals("V", RomanNumber.fromInt(5).toString());
-        assertEquals("X", RomanNumber.fromInt(10).toString());
-        assertEquals("L", RomanNumber.fromInt(50).toString());
-        assertEquals("C", RomanNumber.fromInt(100).toString());
-        assertEquals("D", RomanNumber.fromInt(500).toString());
-        assertEquals("M", RomanNumber.fromInt(1000).toString());
+        assertEquals("I", RomanNumber.valueOf(1).toString());
+        assertEquals("V", RomanNumber.valueOf(5).toString());
+        assertEquals("X", RomanNumber.valueOf(10).toString());
+        assertEquals("L", RomanNumber.valueOf(50).toString());
+        assertEquals("C", RomanNumber.valueOf(100).toString());
+        assertEquals("D", RomanNumber.valueOf(500).toString());
+        assertEquals("M", RomanNumber.valueOf(1000).toString());
     }
 
     @Test
     void romanFrom2() {
-        assertEquals("II", RomanNumber.fromInt(2).toString());
+        assertEquals("II", RomanNumber.valueOf(2).toString());
     }
 
     @Test
     void romanFrom4() {
-        assertEquals("IV", RomanNumber.fromInt(4).toString());
+        assertEquals("IV", RomanNumber.valueOf(4).toString());
     }
 
     @Test
     void romanFrom6() {
-        assertEquals("VI", RomanNumber.fromInt(6).toString());
+        assertEquals("VI", RomanNumber.valueOf(6).toString());
     }
 
     @Test
     void romanFrom9() {
-        assertEquals("IX", RomanNumber.fromInt(9).toString());
+        assertEquals("IX", RomanNumber.valueOf(9).toString());
     }
 
     @Test
     void romanFrom19() {
-        assertEquals("XIX", RomanNumber.fromInt(19).toString());
+        assertEquals("XIX", RomanNumber.valueOf(19).toString());
     }
 
     @Test
     void romanFrom24() {
-        assertEquals("XXIV", RomanNumber.fromInt(24).toString());
+        assertEquals("XXIV", RomanNumber.valueOf(24).toString());
     }
 
     @Test
     void romanFrom40() {
-        assertEquals("XL", RomanNumber.fromInt(40).toString());
+        assertEquals("XL", RomanNumber.valueOf(40).toString());
     }
 
     @Test
     void romanFrom44() {
-        assertEquals("XLIV", RomanNumber.fromInt(44).toString());
+        assertEquals("XLIV", RomanNumber.valueOf(44).toString());
     }
 
     @Test
     void romanFrom58() {
-        assertEquals("LVIII", RomanNumber.fromInt(58).toString());
+        assertEquals("LVIII", RomanNumber.valueOf(58).toString());
     }
 
     @Test
     void romanFrom90() {
-        assertEquals("XC", RomanNumber.fromInt(90).toString());
+        assertEquals("XC", RomanNumber.valueOf(90).toString());
     }
 
     @Test
     void romanFrom2999() {
-        assertEquals("MMCMXCIX", RomanNumber.fromInt(2999).toString());
+        assertEquals("MMCMXCIX", RomanNumber.valueOf(2999).toString());
     }
 }

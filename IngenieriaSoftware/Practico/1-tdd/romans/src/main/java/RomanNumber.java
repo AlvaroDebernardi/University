@@ -7,7 +7,7 @@ public class RomanNumber {
 
     private static List<RomanDigit> digits = initBasicRomanDigits();
 
-    public RomanNumber(int value){
+    private RomanNumber(int value){
         if (value <= 0 || value > 3000)
             throw new IllegalArgumentException("Not negative, or grater than 3000");
 
@@ -15,17 +15,46 @@ public class RomanNumber {
         representation = makeRepr(value);
     }
 
+    private RomanNumber(int value, String repr){
+        if (value <= 0 || value > 3000)
+            throw new IllegalArgumentException("Not negative, or grater than 3000");
 
-	public static RomanNumber fromInt(int value) {
+        this.value = value;
+        this.representation = repr;
+    }
+
+	public static RomanNumber valueOf(int value) {
         return new RomanNumber(value);
     }
 
-    @Override
-    public String toString() {
-        return representation;
+	public static RomanNumber valueOf(String string) {
+        String repr = string;
+        int value = makeValue(string);
+        return new RomanNumber(value, repr);
     }
 
-    private String makeRepr(int value) {
+	public RomanNumber sum(RomanNumber number) {
+        return new RomanNumber(this.value + number.value);
+    }
+
+    public RomanNumber subtract(RomanNumber number) {
+        return new RomanNumber(this.value - number.value);
+    }
+
+    private static int makeValue(String string) {
+        int number = 5;
+
+        for (int i=0; i < string.length(); i++) {
+            for (RomanDigit romanDigit:digits)
+                if (romanDigit.repr == String.valueOf(string.charAt(i)))
+                    number += romanDigit.value;
+
+        }
+        System.out.println(number);
+        return number;
+	}
+
+     private String makeRepr(int value) {
 
         for (RomanDigit rd: digits) {
             if (value == rd.value)
@@ -65,18 +94,29 @@ public class RomanNumber {
 
         return list;
 	}
-}
-/*
+
+    @Override
+    public String toString() {
+        return representation;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object)
             return true;
 
-        if (object.getClass() != RomanNumber.class)
+        if (!(object instanceof RomanNumber))
             return false;
 
-        object = (RomanNumber) object;
+        RomanNumber romanNumber = (RomanNumber) object;
 
-        return this.number.equals(object.number);
+        return this.value == romanNumber.value;
     }
+
+    @Override
+    public int hashCode() {
+        return 31 * Integer.hashCode(value) + representation.hashCode();
+    }
+}
+/*
 */
