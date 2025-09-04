@@ -1,3 +1,8 @@
+package duck;
+
+import flySystem.*;
+import quackSystem.*;
+
 public class PatoCriollo extends Duck {
 
 	public PatoCriollo() {

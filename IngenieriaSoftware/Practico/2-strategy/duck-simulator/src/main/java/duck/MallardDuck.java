@@ -1,3 +1,8 @@
+package duck;
+
+import flySystem.*;
+import quackSystem.*;
+
 public class MallardDuck extends Duck {
 
 	public MallardDuck() {

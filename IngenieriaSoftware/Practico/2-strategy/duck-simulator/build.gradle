@@ -20,7 +20,7 @@ java {
     }
 }
 
-mainClassName = 'DuckSimulator'
+mainClassName = 'Simulator'
 
 dependencies {
 	testImplementation(platform('org.junit:junit-bom:5.10.2'))

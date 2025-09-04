@@ -1,3 +1,8 @@
+package duck;
+
+import flySystem.*;
+import quackSystem.*;
+
 public abstract class Duck {
 
 	FlyBehavior flyBehavior;
