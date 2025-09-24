@@ -8,14 +8,14 @@ public class CellTest {
 
     @Test
     public void cellBuilderTest() {
-        Cell cell = new NormalCell();
+        Cell cell = new NormalCell(1,1);
 
         assertEquals(true, cell.isDead());
     }
 
     @Test
     public void cellBornTest() {
-        Cell cell = new NormalCell();
+        Cell cell = new NormalCell(1,1);
         Color color = new RGB(255,255,255);
 
         cell.born(color);
@@ -26,7 +26,7 @@ public class CellTest {
 
     @Test
     public void cellSetColorTest() {
-        Cell cell = new NormalCell();
+        Cell cell = new NormalCell(1,1);
         Color color = new RGB(255,255,255);
 
         cell.setColor(color);

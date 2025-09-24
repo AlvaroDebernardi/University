@@ -1,9 +1,6 @@
 package board;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
+import java.util.*;
 import cell.*;
 
 public class Board {
@@ -12,6 +9,14 @@ public class Board {
 
     public Board(CellFactory cellFactory) {
         cells = new GridCell(60,60, cellFactory);
+    }
+
+    public Board(int rows, int cols, CellFactory cellFactory) {
+        cells = new GridCell(rows,cols, cellFactory);
+    }
+
+    public GridCell getCells() {
+        return cells;
     }
 
     public Board clone() {

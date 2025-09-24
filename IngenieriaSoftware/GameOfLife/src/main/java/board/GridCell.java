@@ -38,8 +38,9 @@ public class GridCell implements Iterable<Cell> {
 		@Override
 		public Cell next() {
             Cell cell = cells.get(currentRow).get(currentCol);
-            currentRow++;
             currentCol = (currentCol + 1) % COLS;
+            if (currentCol == 0)
+                currentRow++;
             return cell;
 		}
     }
